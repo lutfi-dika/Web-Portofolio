@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 
-// ⬅️ Semua sudah benar: folder 'component'
+// Component
+import Preloader from "./component/Preloader";
 import Sidebar from "./component/Sidebar";
 import Topbar from "./component/Topbar";
 import Explorer from "./component/Explorer";
+import Contact from "./component/Contact";
 
+// Home Page
 import HomeSection from "./pages/HomeSection";
 
-// CSS layout (di dalam folder component/style)
+// CSS Layout
 import "./style/VSLayout.css";
 
-// Prism Highlighting
+// PrismJS (penting: import default dari "prismjs")
 import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 
-// Wajib load language untuk syntax highlight
-import "prismjs/components/prism-jsx";
+// Load languages
 import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-css";
 import "prismjs/components/prism-markup";
 import "prismjs/components/prism-json";
@@ -26,6 +29,11 @@ import "prismjs/components/prism-markdown";
 import fileTree from "./lang/fileTree";
 
 export default function VSLayout() {
+
+    // STATE Preloader
+    const [loading, setLoading] = useState(true);
+
+    // STATE Open File
     const [openFile, setOpenFile] = useState({
         path: null,
         content: "",
@@ -37,9 +45,16 @@ export default function VSLayout() {
         setOpenFile({ path, content, ext });
     };
 
+    // Efek highlight
     useEffect(() => {
         Prism.highlightAll();
     }, [openFile]);
+
+    // Loading delay
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1800);
+        return () => clearTimeout(timer);
+    }, []);
 
     const extToLang = {
         js: "javascript",
@@ -50,19 +65,20 @@ export default function VSLayout() {
         md: "markdown",
     };
 
+    // Jika loading: tampilkan Preloader
+    if (loading) return <Preloader />;
+
     return (
         <div className="vscode-container">
+
             <Topbar />
 
             <div className="editor-area">
 
-                {/* Left Panel */}
                 <div className="left-panel">
-                    {/* <Sidebar /> */}
                     <Explorer tree={fileTree} onOpenFile={handleOpenFile} />
                 </div>
 
-                {/* Right Panel */}
                 <div className="right-panel">
                     {!openFile.path ? (
                         <HomeSection />
@@ -72,16 +88,15 @@ export default function VSLayout() {
 
                             <pre className="file-content">
                                 <code
-                                    className={`language-${extToLang[openFile.ext] || "javascript"
-                                        }`}
+                                    className={`language-${extToLang[openFile.ext] || "javascript"}`}
                                 >
                                     {openFile.content}
                                 </code>
                             </pre>
                         </div>
                     )}
+    
                 </div>
-
             </div>
         </div>
     );
