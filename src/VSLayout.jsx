@@ -5,7 +5,6 @@ import Preloader from "./component/Preloader";
 import Sidebar from "./component/Sidebar";
 import Topbar from "./component/Topbar";
 import Explorer from "./component/Explorer";
-import Contact from "./component/Contact";
 
 // Home Page
 import HomeSection from "./pages/HomeSection";
