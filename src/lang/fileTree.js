@@ -115,7 +115,8 @@ export default function AboutSection() {
       <div className="container">
         <h2 data-aos="fade-up">About Me</h2>
         <p data-aos="fade-up">
-         Halo, saya Lutfi Andika seorang pelajar dari SMK TELEKOMUNIKASI TELESANDI BEKASI yang fokus mendalami dunia front-end development dan desain digital.
+         Halo, saya Lutfi Andika seorang pelajar dari SMK TELEKOMUNIKASI TELESANDI BEKASI yang fokus mendalami dunia 
+         front-end development dan desain digital.
         </p>
 
         <ul className="skills-list" data-aos="fade-up">
