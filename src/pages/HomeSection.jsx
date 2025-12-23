@@ -5,8 +5,9 @@ export default function HomeSection() {
     const code = `
 const developer = {
     name: "Lutfi Andika",
-    role: "Fullstack Web Developer",
+    experience: "Owner of Webkraf ",
     skills: ["Front End Dev", "UI/UX ", "Poster Digital"],
+
 };
 
 console.log("Welcome to my portfolio!");
