@@ -183,8 +183,7 @@ export default function Experience() {
       <div className="container">
         <h2 data-aos="fade-up">Experience</h2>
         <ul data-aos="fade-up">
-          <li>Owner : Webkraf ( Website </li>
-          <li>Poster Digital & Branding</li>
+          <li>Owner : Webkraf ( WebsiteKreatif ) </li>
           <li>Junior Frontend React Developer</li>
         </ul>
       </div>
